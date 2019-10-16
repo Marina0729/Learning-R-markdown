@@ -1,0 +1,77 @@
+---
+title: "Translation control by the Ribosome"
+author: Marina Alexander
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: flatly
+    highlight: zenburn
+    
+---    
+!["a specialized operational hub"](images\186566_web.jpg){width=400px}
+
+```{r}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.width = 5)
+```
+
+
+# **Calling in the libraries and data or intialisation**
+
+```{r setup, echo = FALSE}
+.libPaths(c("C:/Users/ale097/Data School/Packages"))
+library(tidyverse)
+
+read_csv("data/gapminder.csv")
+gapminder <- read_csv("data/gapminder.csv")
+
+num_countries <- gapminder %>% 
+  group_by(country) %>% 
+  summarise() %>% 
+  nrow()
+```
+Filler text There are `r nrow(gapminder)` rows of data for us to work with. 
+And there are `r num_countries` countries.
+
+# **Data manipulation**
+```{r filtered_data, echo = TRUE}
+
+australia <- filter(gapminder, country == "Australia")
+
+australia
+```
+
+# **Plotting the data**
+```{r plotting, echo = TRUE, fig.cap="**Figure 1: This didn't work"}
+
+ggplot(australia) +
+  geom_point(mapping = aes(x = year, y = pop))
+
+```
+
+
+Make text **bold** or _italics_ or `code`
+
+## A subtitle
+
+## A second
+
+### Section header
+
+- First thing to do
+- Second thing 
+- Third
+
+Some text that needs footnoting [^1].
+
+[^1]:And here is my footnote text
+
+1. numbered list 1
+2. numbered list 2
+
+[Link to our notes](https://csiro-data-school.github.io/rmarkdown/)
+
+In this document R version `r getRversion()` was used and we have called tidyverse 
+version `r packageVersion("tidyverse")` 
+
+
